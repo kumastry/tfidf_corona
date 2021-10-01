@@ -25,7 +25,7 @@ for  item in data:
     locals.append(item['local'])
     docs.append(item['words'])
 
-vectorizer = TfidfVectorizer(use_idf=True)
+vectorizer = TfidfVectorizer(sublinear_tf=True)
 tfidf = vectorizer.fit_transform(docs).toarray()
 feature_names = np.array(vectorizer.get_feature_names())
 f = vectorizer.get_feature_names()
