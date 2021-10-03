@@ -26,7 +26,7 @@ for  item in data:
     locals.append(item['local'])
     docs.append(item['words'])
 
-vectorizer = TfidfVectorizer(sublinear_tf=True)
+vectorizer = TfidfVectorizer(sublinear_tf=True, token_pattern=u'(?u)\\b\\w+\\b')
 tfidf = vectorizer.fit_transform(docs).toarray()
 feature_names = np.array(vectorizer.get_feature_names())
 f = vectorizer.get_feature_names()
@@ -49,5 +49,5 @@ for i,j in zip(feature_words, locals):
     json_data.append({"local":j, "top":i})
 
 
-with open('tfidf.json',  mode='wt', encoding='utf-8') as f:
+with open('tfidf3.json',  mode='wt', encoding='utf-8') as f:
     json.dump(json_data, f, ensure_ascii=False, cls = MyEncoder,indent=2)
